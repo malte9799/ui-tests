@@ -11,20 +11,20 @@ export default async function globalTeardown(config: FullConfig) {
     const testIgnore = config.projects[0].testIgnore;
     process.env.TEST_IGNORE = "true";
 
-    const setupSQLs: string[] = [];
+    const teardownSQLs: string[] = [];
 
     const files = walkDir(testDir);
     for (const file of files) {
         const mod = require(file);
-        if (typeof mod.setup === "function") {
-            const sql = await mod.teardown();
-            if (sql) setupSQLs.push(sql);
+        if (typeof mod.default === "object") {
+            const sql = mod.default.deleteQuery;
+            if (sql) teardownSQLs.push(sql);
         }
     }
 
-    const setupSQL = setupSQLs.join("\n");
+    const teardownSQL = teardownSQLs.join("\n");
 
-    await sendSQLpw(setupSQL, config);
+    await sendSQLpw(teardownSQL, config);
 
     process.env.TEST_IGNORE = "false";
 }

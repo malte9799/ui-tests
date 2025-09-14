@@ -1,37 +1,31 @@
 import { test, expect, type Page } from "@playwright/test";
+if (process.env.IGNORE_TESTS !== "true") defineTests();
 
-export async function setup() {
-    return `
-        INSERT INTO kunde SET name='Alice', nachname='Müll';
-    `;
-}
-export async function teardown() {
-    return `
-        DELETE FROM kunde WHERE name = 'Alice' AND nachname = 'Müll';
+export default {
+    createQuery: `
+        INSERT INTO kunde SET name='PW-Kunde-Name', nachname='PW-Kunde-Nachname';`,
+    deleteQuery: `
+        DELETE FROM kunde WHERE name='PW-Kunde-Name';`,
+};
 
-    `;
-}
-
-if (process.env.TEST_IGNORE !== "true") {
+function defineTests() {
     test("1 @setup", async ({ page }) => {
         await page.waitForTimeout(Math.random() * 2_000);
     });
     test("1 @teardown", async ({ page }) => {
-        await page.waitForTimeout(1_000);
+        await page.waitForTimeout(Math.random() * 2_000);
     });
-    test("1", async ({ page }) => {
-        await page.waitForTimeout(1_000);
-    });
-    test("2", async ({ page }) => {
-        await page.waitForTimeout(1_000);
-    });
-    test("3", async ({ page }) => {
-        await page.waitForTimeout(1_000);
-    });
-    test("4", async ({ page }) => {
-        await page.waitForTimeout(1_000);
-    });
-    test("5", async ({ page }) => {
-        await page.waitForTimeout(1_000);
+    test("1", async ({ page }) => await page.waitForTimeout(1_000));
+    test("2", async ({ page }) => await page.waitForTimeout(1_000));
+    test("3", async ({ page }) => await page.waitForTimeout(1_000));
+    test("4", async ({ page }) => await page.waitForTimeout(1_000));
+    test("5", async ({ page }) => await page.waitForTimeout(1_000));
+
+    test.describe.serial("ed", () => {
+        test("11", async ({ page }) => await page.waitForTimeout(1_000));
+        test("12", async ({ page }) => await page.waitForTimeout(1_000));
+        test("13", async ({ page }) => await page.waitForTimeout(1_000));
+        test("14", async ({ page }) => await page.waitForTimeout(1_000));
+        test("15", async ({ page }) => await page.waitForTimeout(1_000));
     });
 }

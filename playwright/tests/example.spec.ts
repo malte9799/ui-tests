@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
+if (process.env.IGNORE_TESTS !== "true") defineTests();
 
-if (process.env.TEST_IGNORE !== "true") {
+function defineTests() {
     test("has title", async ({ page }) => {
         await page.goto("https://playwright.dev/");
 

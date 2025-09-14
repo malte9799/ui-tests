@@ -33,7 +33,7 @@ export default defineConfig({
             ? [
                   {
                       name: "debug",
-                      workers: 1,
+                      fullyParallel: true,
                   },
               ]
             : []),

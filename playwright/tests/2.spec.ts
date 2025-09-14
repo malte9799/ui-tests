@@ -1,23 +1,22 @@
 import { test, expect } from "@playwright/test";
+if (process.env.IGNORE_TESTS !== "true") defineTests();
 
-export async function setup() {
-    return `
-        INSERT INTO objekt SET name='O Alice', nachname='O Müll', kunde_id=(
-            SELECT id FROM kunde WHERE name='Alice' AND nachname='Müll' LIMIT 1
-        );
-    `;
-}
-export async function teardown() {
-    return `
-        DELETE FROM objekt WHERE name = 'O Alice' AND nachname = 'O Müll';
-    `;
-}
+export default {
+    createQuery: `
+        INSERT INTO objekt SET name='PW-Objekt-Name', nachname='PW-Objekt-Nachname', kunde_id=(
+            SELECT id FROM kunde WHERE name='PW-Kunde-Name' LIMIT 1
+        );`,
+    deleteQuery: `
+        DELETE FROM objekt WHERE name = 'PW-Objekt-Name';`,
+};
 
-if (process.env.TEST_IGNORE !== "true") {
+function defineTests() {
     test("2 @setup", async ({ page }) => {
         await page.waitForTimeout(Math.random() * 2_000);
     });
-    test("2 @teardown", async ({ page }) => await page.waitForTimeout(1_000));
+    test("2 @teardown", async ({ page }) => {
+        await page.waitForTimeout(Math.random() * 2_000);
+    });
     test("1", async ({ page }) => await page.waitForTimeout(1_000));
     test("2", async ({ page }) => await page.waitForTimeout(1_000));
     test("3", async ({ page }) => await page.waitForTimeout(1_000));

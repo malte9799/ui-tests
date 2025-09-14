@@ -11,15 +11,15 @@ export default async function globalSetup(config: FullConfig) {
     const testDir = config.projects[0].testDir;
     const testIgnore = config.projects[0].testIgnore;
 
-    process.env.TEST_IGNORE = "true";
+    process.env.IGNORE_TESTS = "true";
 
     const setupSQLs: string[] = [];
 
     const files = walkDir(testDir);
     for (const file of files) {
         const mod = require(file);
-        if (typeof mod.setup === "function") {
-            const sql = await mod.setup();
+        if (typeof mod.default == "object") {
+            const sql = mod.default.createQuery;
             if (sql) setupSQLs.push(sql);
         }
     }
@@ -28,5 +28,5 @@ export default async function globalSetup(config: FullConfig) {
 
     await sendSQLpw(setupSQL, config);
 
-    process.env.TEST_IGNORE = "false";
+    process.env.IGNORE_TESTS = "false";
 }

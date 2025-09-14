@@ -33,6 +33,8 @@ app.post("/sql", (req, res) => {
             .json({ error: "Bitte SQL als Text im Body senden" });
     }
 
+    // console.log("SQL: ", sql.replace(/\s+/g, " ").replace(/;/g, ";\n"));
+
     pool.query(sql.replace(/\s+/g, " "), (err, results) => {
         if (err) {
             console.error("SQL Fehler:", err);
