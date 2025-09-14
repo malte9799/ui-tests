@@ -1,7 +1,7 @@
 import { chromium, expect, type FullConfig } from "@playwright/test";
 import { createRequire } from "module";
-import { walkDir, sendSQLpw } from "./utils";
-import "./db";
+import { walkDir, sendSQLpw } from "../utils/utils";
+import "../utils/db";
 
 const require = createRequire(import.meta.url);
 

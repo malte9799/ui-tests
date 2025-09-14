@@ -6,8 +6,8 @@ export default defineConfig({
     testDir: "./tests",
     testIgnore: ["**/._*"],
     reporter: [["list"]],
-    globalSetup: "./global-setup.ts",
-    globalTeardown: "./global-teardown.ts",
+    globalSetup: "./tests/global.setup.ts",
+    globalTeardown: "./tests/global.teardown.ts",
     workers: "100%",
     use: {
         baseURL: BASE_URL,

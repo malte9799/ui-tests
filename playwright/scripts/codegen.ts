@@ -1,6 +1,6 @@
 import { exec } from "child_process";
-import globalSetup from "./global-setup.ts";
-import config from "./playwright.config.ts";
+import globalSetup from "../tests/global.setup.ts";
+import config from "../playwright.config.ts";
 import { type FullConfig } from "@playwright/test";
 
 async function runCodegen() {

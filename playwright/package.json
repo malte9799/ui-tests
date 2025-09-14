@@ -4,9 +4,9 @@
     "description": "",
     "main": "",
     "scripts": {
-        "codegen": "ts-node codegen.ts",
-        "test": "ts-node run-test.ts",
-        "test_": "ts-node run-test-old.ts"
+        "codegen": "ts-node scripts/codegen.ts",
+        "test": "ts-node scripts/run-test.ts",
+        "test_": "ts-node scripts/run-test-old.ts"
     },
     "keywords": [],
     "author": "",
