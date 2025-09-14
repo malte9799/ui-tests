@@ -1,0 +1,30 @@
+{
+    "name": "playwright",
+    "version": "1.0.0",
+    "description": "",
+    "main": "",
+    "scripts": {
+        "codegen": "ts-node codegen.ts",
+        "test": "ts-node run-test.ts",
+        "test_": "ts-node run-test-old.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "devDependencies": {
+        "@playwright/test": "^1.55.0",
+        "@types/express": "^5.0.3",
+        "@types/node": "^24.3.1"
+    },
+    "dependencies": {
+        "enquirer": "^2.4.1",
+        "express": "^5.1.0",
+        "glob": "^11.0.3",
+        "inquirer": "^12.9.4",
+        "minimatch": "^10.0.3",
+        "mysql2": "^3.14.5",
+        "terminal-kit": "^3.1.2",
+        "ts-node": "^10.9.2"
+    }
+}
