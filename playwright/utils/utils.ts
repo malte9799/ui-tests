@@ -1,6 +1,7 @@
 import { chromium, type FullConfig } from "@playwright/test";
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 
 export function walkDir(dir: string) {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -31,4 +32,8 @@ export async function sendSQLpw(sql: string, config: FullConfig) {
     });
 
     return;
+}
+
+export function md5(string: string) {
+    return crypto.createHash("md5").update("ListKunde").digest("hex");
 }
