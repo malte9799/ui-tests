@@ -20,12 +20,4 @@ function defineTests() {
     test("3", async ({ page }) => await page.waitForTimeout(1_000));
     test("4", async ({ page }) => await page.waitForTimeout(1_000));
     test("5", async ({ page }) => await page.waitForTimeout(1_000));
-
-    test.describe.serial("ed", () => {
-        test("11", async ({ page }) => await page.waitForTimeout(1_000));
-        test("12", async ({ page }) => await page.waitForTimeout(1_000));
-        test("13", async ({ page }) => await page.waitForTimeout(1_000));
-        test("14", async ({ page }) => await page.waitForTimeout(1_000));
-        test("15", async ({ page }) => await page.waitForTimeout(1_000));
-    });
 }

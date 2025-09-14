@@ -7,7 +7,7 @@ const require = createRequire(import.meta.url);
 export default async function globalTeardown(config: FullConfig) {
     console.debug("\x1b[32m%s\x1b[0m", "===== GLOBAL TEARDOWN =====");
 
-    const testDir = config.projects[0].testDir;
+    const testDir = config.projects[0].testDir ?? "./tests";
     const testIgnore = config.projects[0].testIgnore;
     process.env.TEST_IGNORE = "true";
 

@@ -1,6 +1,6 @@
 import { chromium, type FullConfig } from "@playwright/test";
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 
 export function walkDir(dir: string) {
     const entries = fs.readdirSync(dir, { withFileTypes: true });

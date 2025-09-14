@@ -1,14 +1,14 @@
 import { chromium, expect, type FullConfig } from "@playwright/test";
 import { createRequire } from "module";
-import { walkDir, sendSQLpw } from "../utils/utils";
-import "../utils/db";
+import { walkDir, sendSQLpw } from "../utils/utils.ts";
+import "../utils/db.ts";
 
 const require = createRequire(import.meta.url);
 
 export default async function globalSetup(config: FullConfig) {
     console.debug("\x1b[32m%s\x1b[0m", "===== GLOBAL SETUP =====");
 
-    const testDir = config.projects[0].testDir;
+    const testDir = config.projects[0].testDir ?? "tests";
     const testIgnore = config.projects[0].testIgnore;
 
     process.env.IGNORE_TESTS = "true";
