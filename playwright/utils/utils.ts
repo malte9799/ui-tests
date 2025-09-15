@@ -37,3 +37,11 @@ export async function sendSQLpw(sql: string, config: FullConfig) {
 export function md5(string: string) {
     return crypto.createHash("md5").update("ListKunde").digest("hex");
 }
+
+export class Liste {
+    constructor() {
+        if (process.env.IGNORE_TESTS !== "true") this.tests();
+    }
+
+    tests() {}
+}
