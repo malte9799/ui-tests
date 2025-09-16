@@ -6,6 +6,7 @@ import "../utils/db.ts";
 const require = createRequire(import.meta.url);
 
 export default async function globalSetup(config: FullConfig) {
+    console.dir(config);
     console.debug("\x1b[32m%s\x1b[0m", "===== GLOBAL SETUP =====");
 
     const testDir = config.projects[0].testDir ?? "tests";
